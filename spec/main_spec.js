@@ -73,10 +73,10 @@ describe("TDD Postnet", function(){
     it("test:将编码转化为数字（邮编）", function () {
         let str = "| |:|:: :|:|: |:::| :::|| ::||: :|::| |::|: ||::: ::|:| :::|| |";
         let result = [];
-        let expect_zip = "95713"
+        let expect_zip = "95713-4802"
 
         result = changeToZip(str);
-        // expect(expect_zip).to.equal(result);
+        expect(expect_zip).to.equal(result.join(""));
 
     })
 
