@@ -20,10 +20,11 @@ const getConversion = require("../lib/getConversion");
 const getArrays = require("../lib/getArrays");
 var main = require("../lib/main");
 var codeToZip = require("../lib/codeToZip")
+var changeToCode = require("../lib/changeToCode");
+var changeToZip = require("../lib/changeToZip")
 
 
 describe("TDD Postnet", function(){
-
     it("test1:数字转换为编码二进制对应的数值", function(){
         let correspond_array = getArrays();
 
@@ -53,16 +54,31 @@ describe("TDD Postnet", function(){
         expect(expect_string).to.equal(result);
     })
 
-    it("test4:将一个数字转换为对应编码",function () {
-        let num = 7;
-        let correspond_array = getArrays();     //将数字转换为编码对应的二进制所对应的数（好吧，有点绕）
-        let code_binary = getConversion(correspond_array[num])  //将二进制数转换为编码
-        let result = codeToZip(code_binary);    //将二进制数转换为编码
-        let expect_string = "|:::|";
+    it("test4:将邮编95713转换为对应编码", function () {
+        let str = "95713";
+        let expect_string = "| |:|:: :|:|: |:::| :::|| ::||: :|:|: |";
+        let result = changeToCode(str);
 
-        expect(expect_string).to.equal(result);
+        expect(expect_string).to.equal(result.join(" "));
+    })
+    
+    it("test:将邮编95713-4802转换为对应编码", function () {
+        let str = "95713-4802";
+        let expect_string = "| |:|:: :|:|: |:::| :::|| ::||: :|::| |::|: ||::: ::|:| :::|| |";
+        let result = changeToCode(str);
+
+        expect(expect_string).to.equal(result.join(" "));
+    })
+    
+    it("test:将编码转化为数字（邮编）", function () {
+        let str = "| |:|:: :|:|: |:::| :::|| ::||: :|::| |::|: ||::: ::|:| :::|| |";
+        let result = [];
+        let expect_zip = "95713"
+
+        result = changeToZip(str);
+        // expect(expect_zip).to.equal(result);
 
     })
 
-    // it("test5:将")
+
 });
